@@ -1,12 +1,6 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import {
-  Location,
-  LocationStrategy,
-  PathLocationStrategy,
-  PopStateEvent,
-} from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { Location, PopStateEvent } from '@angular/common';
 import 'rxjs/add/operator/filter';
-import { NavbarComponent } from '@shared/components/navbar/navbar.component';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import PerfectScrollbar from 'perfect-scrollbar';
@@ -145,18 +139,25 @@ export class AdminLayoutComponent implements OnInit {
       }
     });
   }
+
+  ngOnDestroy() {
+    this._router.unsubscribe();
+  }
+
   ngAfterViewInit() {
     this.runOnRouteChange();
   }
+
   isMaps(path) {
-    var titlee = this.location.prepareExternalUrl(this.location.path());
-    titlee = titlee.slice(1);
-    if (path == titlee) {
+    let title = this.location.prepareExternalUrl(this.location.path());
+    title = title.slice(1);
+    if (path == title) {
       return false;
     } else {
       return true;
     }
   }
+
   runOnRouteChange(): void {
     if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
       const elemMainPanel = <HTMLElement>document.querySelector('.main-panel');
@@ -164,6 +165,7 @@ export class AdminLayoutComponent implements OnInit {
       ps.update();
     }
   }
+
   isMac(): boolean {
     let bool = false;
     if (

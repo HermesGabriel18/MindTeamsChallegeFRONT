@@ -10,6 +10,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FooterComponent } from './components/footer/footer.component';
@@ -29,6 +30,7 @@ const MODULES = [
   NgSelectModule,
   MatExpansionModule,
   MatSliderModule,
+  MatTooltipModule,
 ];
 
 @NgModule({

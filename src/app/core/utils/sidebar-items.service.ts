@@ -12,7 +12,7 @@ export class SidebarItemsService {
       {
         path: `/app/${MindTeamsRoutes.dashboard}`,
         title: 'Dashboard',
-        icon: 'pe-7s-users',
+        icon: 'dashboard',
         class: '',
         hidden: this._ngxPermissions.getPermission(String(Privileges.DASHBOARD))
           ? false
@@ -21,7 +21,7 @@ export class SidebarItemsService {
       {
         path: `/app/${MindTeamsRoutes.users}`,
         title: 'Usuarios',
-        icon: 'pe-7s-users',
+        icon: 'person',
         class: '',
         hidden: this._ngxPermissions.getPermission(String(Privileges.USERS))
           ? false

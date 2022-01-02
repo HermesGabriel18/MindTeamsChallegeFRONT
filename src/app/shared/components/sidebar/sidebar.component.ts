@@ -1,40 +1,57 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AuthService } from '@auth/services';
+import { MindTeamsRoutes, RouteInfo } from '@core/models';
+import { SidebarItemsService, UtilsService } from '@core/utils';
+import { Subscription } from 'rxjs';
 
 declare const $: any;
-declare interface RouteInfo {
-    path: string;
-    title: string;
-    icon: string;
-    class: string;
-}
-export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
-    { path: '/user-profile', title: 'User Profile',  icon:'person', class: '' },
-    { path: '/table-list', title: 'Table List',  icon:'content_paste', class: '' },
-    { path: '/typography', title: 'Typography',  icon:'library_books', class: '' },
-    { path: '/icons', title: 'Icons',  icon:'bubble_chart', class: '' },
-    { path: '/maps', title: 'Maps',  icon:'location_on', class: '' },
-    { path: '/notifications', title: 'Notifications',  icon:'notifications', class: '' },
-    { path: '/upgrade', title: 'Upgrade to PRO',  icon:'unarchive', class: 'active-pro' },
-];
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrls: ['./sidebar.component.css'],
 })
-export class SidebarComponent implements OnInit {
-  menuItems: any[];
+export class SidebarComponent implements OnInit, OnDestroy {
+  menuItems: RouteInfo[];
+  private _subscription: Subscription = new Subscription();
 
-  constructor() { }
+  constructor(
+    private _sidebarItemsService: SidebarItemsService,
+    private _authService: AuthService,
+    private _utilsService: UtilsService
+  ) {}
 
   ngOnInit() {
-    this.menuItems = ROUTES.filter(menuItem => menuItem);
+    this.menuItems = this._sidebarItemsService
+      .getSidebarItems()
+      .filter((menuItem) => !menuItem.hidden);
   }
+
+  ngOnDestroy() {
+    this._subscription.unsubscribe();
+  }
+
   isMobileMenu() {
-      if ($(window).width() > 991) {
-          return false;
+    if ($(window).width() > 991) {
+      return false;
+    }
+    return true;
+  }
+
+  onLogOut(): void {
+    this._subscription = this._authService.logout().subscribe(
+      () => {
+        this._authService.flushUser();
+      },
+      () => {
+        this._utilsService.showNotificationError(
+          'No se ha podido cerrar sesión'
+        );
       }
-      return true;
-  };
+    );
+  }
+
+  editProfile() {
+    this._utilsService.navigate([`app/${MindTeamsRoutes.dashboard}`]);
+  }
 }
