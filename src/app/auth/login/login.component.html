@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="login__wrapper">
+    <div class="card text-center shadow p-3 bg-white round-corner elevation-2">
+      <img
+        src="../../../assets/img/angular2-logo.png"
+        class="card-img-top img"
+      />
+      <div class="card-body">
+        <form
+          [formGroup]="loginForm"
+          class="col-md-12 pb-3"
+          id="loginForm"
+          (submit)="onLogin()"
+        >
+          <div class="form-group" *ngIf="showError">
+            <div class="alert alert-danger mt-2" role="alert">
+              <button
+                type="button"
+                aria-hidden="true"
+                class="close"
+                (click)="closeAlert()"
+              >
+                ×
+              </button>
+              Correo electrónico o contraseña incorrecto
+            </div>
+          </div>
+          <div class="form-group mb-5 mt-5">
+            <label *ngIf="!production"> DEV: admin@mail.com </label>
+            <input
+              class="form-control"
+              placeholder="Email"
+              type="email"
+              formControlName="email"
+              name="email"
+              placeholder="Correo electrónico"
+            />
+            <small
+              *ngIf="loginForm.get('email').errors?.pattern"
+              class="text-danger"
+            >
+              Correo inválido
+            </small>
+          </div>
+          <div class="form-group mt-5">
+            <label *ngIf="!production"> DEV: Secret123** </label>
+            <input
+              class="form-control"
+              placeholder="Contraseña"
+              type="password"
+              formControlName="password"
+              name="password"
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-block mt-4 btn-primary"
+            [disabled]="loginForm.invalid || loading"
+          >
+            {{ loading ? 'Accediendo' : 'Acceder' }}
+          </button>
+
+          <div class="custom-control custom-checkbox mt-4">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              id="checkboxStyle"
+            />
+            <label for="checkboxStyle" class="ml-4 mt-12"> Recuérdame </label>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
