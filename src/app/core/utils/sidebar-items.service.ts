@@ -10,6 +10,15 @@ export class SidebarItemsService {
   getSidebarItems(): RouteInfo[] {
     const sidebarMenu: RouteInfo[] = [
       {
+        path: `/app/${MindTeamsRoutes.dashboard}`,
+        title: 'Dashboard',
+        icon: 'pe-7s-users',
+        class: '',
+        hidden: this._ngxPermissions.getPermission(String(Privileges.DASHBOARD))
+          ? false
+          : true,
+      },
+      {
         path: `/app/${MindTeamsRoutes.users}`,
         title: 'Usuarios',
         icon: 'pe-7s-users',

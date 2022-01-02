@@ -12,5 +12,6 @@ export enum RoleId {
 }
 
 export enum Privileges {
-  USERS = 1,
+  DASHBOARD = 1,
+  USERS = 2,
 }

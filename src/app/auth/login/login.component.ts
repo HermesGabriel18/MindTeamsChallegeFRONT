@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.production);
     this._createFormGroup();
   }
 
@@ -50,7 +51,9 @@ export class LoginComponent implements OnInit, OnDestroy {
           this._utilsService.showNotificationSuccess(
             `Bienvenivo/a a MindTeams ${identity.name}!`
           );
-          return this._utilsService.navigate([`/app/${MindTeamsRoutes.users}`]);
+          return this._utilsService.navigate([
+            `/app/${MindTeamsRoutes.dashboard}`,
+          ]);
         },
         () => {
           this.showError = true;

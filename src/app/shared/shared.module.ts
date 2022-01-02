@@ -12,7 +12,6 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { TagInputModule } from 'ngx-chips';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -28,7 +27,6 @@ const MODULES = [
   MatPaginatorModule,
   MatTableModule,
   NgSelectModule,
-  TagInputModule,
   MatExpansionModule,
   MatSliderModule,
 ];

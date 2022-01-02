@@ -1,34 +1,60 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { CommonModule, } from '@angular/common';
-import { BrowserModule  } from '@angular/platform-browser';
-import { Routes, RouterModule } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthLayoutComponent } from '@app/templates/auth-layout/auth-layout.component';
+import { AuthGuard, ReturnLoggedGuard } from '@core/guards';
+import { MindTeamsRoutes } from '@core/models';
+import { AdminLayoutComponent } from '@templates/admin-layout/admin-layout.component';
 
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-
-const routes: Routes =[
+const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'dashboard',
+    path: 'auth',
+    canActivate: [ReturnLoggedGuard],
+    component: AuthLayoutComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./templates/auth-layout/auth-layout.module').then(
+            (m) => m.AuthLayoutModule
+          ),
+      },
+    ],
+  },
+  {
+    path: 'app',
+    redirectTo: `app/${MindTeamsRoutes.dashboard}`,
     pathMatch: 'full',
-  }, {
-    path: '',
+  },
+  {
+    path: 'app',
     component: AdminLayoutComponent,
-    children: [{
-      path: '',
-      loadChildren: () => import('./layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
-    }]
-  }
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./templates/admin-layout/admin-layout.module').then(
+            (m) => m.AdminLayoutModule
+          ),
+      },
+    ],
+  },
+  {
+    path: '**',
+    redirectTo: 'auth',
+  },
 ];
 
 @NgModule({
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes,{
-       useHash: true
-    })
+    RouterModule.forRoot(routes, {
+      useHash: true,
+    }),
   ],
-  exports: [
-  ],
+  exports: [],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
