@@ -14,11 +14,11 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-  module: string = '';
-  title: string = '';
-  isLoading: boolean = false;
+  module = '';
+  title = '';
+  isLoading = false;
   profileForm: FormGroup = new FormGroup({});
-  changePass: boolean = false;
+  changePass = false;
   private _subscription: Subscription = new Subscription();
   constructor(
     private _router: Router,

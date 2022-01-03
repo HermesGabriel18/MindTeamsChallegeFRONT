@@ -14,14 +14,14 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./users-list.component.css'],
 })
 export class UsersListComponent implements OnInit, OnDestroy {
-  module: string = '';
-  title: string = '';
-  isLoading: boolean = false;
+  module = '';
+  title = '';
+  isLoading = false;
   dataSource = new MatTableDataSource<any>();
   usersList: User[] = [];
   rolesList: Role[] = [];
   usersFilter: UserFilter = null;
-  showFilter: boolean = false;
+  showFilter = false;
   private _subscription: Subscription = new Subscription();
   private _displayedColumns: string[] = [
     'name',
