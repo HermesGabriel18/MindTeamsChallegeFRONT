@@ -38,7 +38,7 @@
                 </div>
               </div>
 
-              <div class="col-md-12">
+              <div *ngIf="isEdit" class="col-md-12">
                 <mat-checkbox
                   [(ngModel)]="changePass"
                   [ngModelOptions]="{
@@ -49,7 +49,7 @@
                 </mat-checkbox>
               </div>
 
-              <ng-container *ngIf="changePass">
+              <ng-container *ngIf="!isEdit || changePass">
                 <div class="row">
                   <div class="col-md-6">
                     <mat-form-field class="example-full-width">

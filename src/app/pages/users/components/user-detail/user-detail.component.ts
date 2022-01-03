@@ -9,8 +9,8 @@ import { MindTeamsRoutes } from '@core/models';
   styleUrls: ['./user-detail.component.css'],
 })
 export class UserDetailComponent implements OnInit {
-  module: string = '';
-  title: string = '';
+  module = '';
+  title = '';
   user: User = null;
   constructor(
     private _router: Router,
