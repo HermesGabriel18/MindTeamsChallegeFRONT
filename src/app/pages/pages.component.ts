@@ -7,11 +7,30 @@ import PerfectScrollbar from 'perfect-scrollbar';
 import * as $ from 'jquery';
 
 @Component({
-  selector: 'app-admin-layout',
-  templateUrl: './admin-layout.component.html',
-  styleUrls: ['./admin-layout.component.scss'],
+  selector: 'app-pages',
+  template: `<div class="wrapper">
+    <div
+      class="sidebar"
+      data-color="danger"
+      data-background-color="white"
+      data-image="./assets/img/sidebar-1.jpg"
+    >
+      <app-sidebar></app-sidebar>
+      <div
+        class="sidebar-background"
+        style="background-image: url(./assets/img/sidebar-4.jpg)"
+      ></div>
+    </div>
+    <div class="main-panel">
+      <app-navbar></app-navbar>
+      <router-outlet></router-outlet>
+      <div *ngIf="isMaps('maps')">
+        <app-footer></app-footer>
+      </div>
+    </div>
+  </div> `,
 })
-export class AdminLayoutComponent implements OnInit {
+export class PagesComponent implements OnInit {
   private _router: Subscription;
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];

@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthLayoutComponent } from '@app/templates/auth-layout/auth-layout.component';
 import { AuthGuard, ReturnLoggedGuard } from '@core/guards';
 import { MindTeamsRoutes } from '@core/models';
-import { AdminLayoutComponent } from '@templates/admin-layout/admin-layout.component';
+import { PagesComponent } from '@pages/pages.component';
 
 const routes: Routes = [
   {
@@ -29,15 +29,13 @@ const routes: Routes = [
   },
   {
     path: 'app',
-    component: AdminLayoutComponent,
+    component: PagesComponent,
     canActivate: [AuthGuard],
     children: [
       {
         path: '',
         loadChildren: () =>
-          import('./templates/admin-layout/admin-layout.module').then(
-            (m) => m.AdminLayoutModule
-          ),
+          import('./pages/pages.module').then((m) => m.PagesModule),
       },
     ],
   },
