@@ -105,11 +105,10 @@ export class UserFormComponent implements OnInit, OnDestroy {
 
         name: [this.isEdit ? user.name : '', Validators.required],
         email: [
-          this.isEdit ? user.email : '',
-          Validators.compose([
-            Validators.required,
-            this._customValidationsService.emailValidator(),
-          ]),
+          {
+            value: this.isEdit ? user.email : '',
+            disabled: this.isEdit,
+          },
         ],
         password: ['', [Validators.minLength(8)]],
         password_confirmation: ['', [Validators.minLength(8)]],
