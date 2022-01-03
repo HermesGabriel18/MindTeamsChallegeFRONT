@@ -10,6 +10,6 @@ export interface User {
   password_confirmation?: string;
   email_verified_at: string;
   locale: string;
-  disabled: any;
+  disabled: string;
   role?: Role;
 }

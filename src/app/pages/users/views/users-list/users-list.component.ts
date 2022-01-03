@@ -43,10 +43,6 @@ export class UsersListComponent implements OnInit, OnDestroy {
     return this._authService.loggedUser;
   }
 
-  get isInternal(): boolean {
-    return this._authService.isInternal;
-  }
-
   get pageLength(): number {
     return this._userService.meta ? this._userService.meta.total : 0;
   }

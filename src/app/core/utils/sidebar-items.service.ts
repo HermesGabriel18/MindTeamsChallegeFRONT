@@ -28,9 +28,18 @@ export class SidebarItemsService {
       {
         path: `/app/${MindTeamsRoutes.users}`,
         title: 'Usuarios',
-        icon: 'person',
+        icon: 'people_alt',
         class: '',
         hidden: this._ngxPermissions.getPermission(String(Privileges.USERS))
+          ? false
+          : true,
+      },
+      {
+        path: `/app/${MindTeamsRoutes.clients}`,
+        title: 'Clientes',
+        icon: 'maps_home_work',
+        class: '',
+        hidden: this._ngxPermissions.getPermission(String(Privileges.CLIENTS))
           ? false
           : true,
       },

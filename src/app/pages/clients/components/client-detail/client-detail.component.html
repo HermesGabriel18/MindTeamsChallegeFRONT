@@ -1,0 +1,36 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">{{ title }}</h4>
+            <p>{{ client.name }}</p>
+          </div>
+          <div class="card-body">
+            <div class="row m-2">
+              <div class="col-md-12">
+                <mat-chip-list aria-label="Status">
+                  <mat-chip *ngIf="!client.disabled" color="primary" selected
+                    >Activo</mat-chip
+                  >
+                  <mat-chip *ngIf="client.disabled" color="warn" selected
+                    >Inactivo</mat-chip
+                  >
+                </mat-chip-list>
+              </div>
+            </div>
+            <button
+              mat-raised-button
+              type="button"
+              class="btn btn-default mt-2"
+              (click)="goBack()"
+            >
+              Ir al listado de clientes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

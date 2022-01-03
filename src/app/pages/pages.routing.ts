@@ -35,4 +35,16 @@ export const PagesRoutes: Routes = [
       },
     },
   },
+  {
+    path: MindTeamsRoutes.clients,
+    loadChildren: () =>
+      import('./clients/clients.module').then((m) => m.ClientsModule),
+    canActivate: [NgxPermissionsGuard],
+    data: {
+      permissions: {
+        only: [Privileges.CLIENTS],
+        redirectTo: error,
+      },
+    },
+  },
 ];

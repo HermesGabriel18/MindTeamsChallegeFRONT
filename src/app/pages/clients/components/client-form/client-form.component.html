@@ -1,0 +1,71 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">{{ title }}</h4>
+            <p class="card-category">Completa tu perfil</p>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="clientForm" (submit)="saveClient()">
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      formControlName="name"
+                      matInput
+                      placeholder="Escriba el nombre del cliente acá"
+                      type="text"
+                    />
+                    <small
+                      *ngIf="clientForm.get('name').invalid"
+                      class="text-danger"
+                    >
+                      Debe ingresar su nombre
+                    </small>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row" *ngIf="isEdit">
+                <div class="col-md-6">
+                  <div class="pull-right">
+                    <mat-checkbox
+                      [(ngModel)]="clientStatus"
+                      [ngModelOptions]="{
+                        standalone: true
+                      }"
+                      (change)="onChangeStatus($event)"
+                    >
+                      Estado del cliente :
+                      {{ clientStatus ? 'Activo' : 'Inactivo' }}
+                    </mat-checkbox>
+                  </div>
+                </div>
+              </div>
+
+              <button
+                mat-raised-button
+                type="button"
+                class="btn btn-default"
+                (click)="goBack()"
+              >
+                Ir al listado de clientes
+              </button>
+              <button
+                mat-raised-button
+                type="submit"
+                class="btn btn-danger pull-right"
+                [disabled]="clientForm.invalid || isLoading"
+              >
+                {{ isLoading ? 'Guardando' : 'Guardar' }}
+              </button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

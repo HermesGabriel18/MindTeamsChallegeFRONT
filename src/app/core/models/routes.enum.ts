@@ -4,6 +4,7 @@ export enum MindTeamsRoutes {
   dashboard = 'dashboard',
   profile = 'profile',
   users = 'users',
+  clients = 'clients',
   add = 'add',
   edit = 'edit',
   show = 'show',

@@ -15,9 +15,9 @@
                   mat-raised-button
                   type="button"
                   class="btn btn-danger pull-right"
-                  (click)="addUser()"
+                  (click)="addClient()"
                 >
-                  Añadir usuario
+                  Añadir cliente
                 </button>
 
                 <button
@@ -43,19 +43,6 @@
                     {{ element.name }}
                   </td>
                 </ng-container>
-                <ng-container matColumnDef="email">
-                  <th mat-header-cell *matHeaderCellDef>Correo electrónico</th>
-                  <td mat-cell *matCellDef="let element">
-                    {{ element.email }}
-                  </td>
-                </ng-container>
-
-                <ng-container matColumnDef="role_id">
-                  <th mat-header-cell *matHeaderCellDef>Rol</th>
-                  <td mat-cell *matCellDef="let element">
-                    {{ showRoleName(element.role_id) }}
-                  </td>
-                </ng-container>
 
                 <ng-container matColumnDef="status">
                   <th mat-header-cell *matHeaderCellDef>Estado</th>
@@ -78,9 +65,9 @@
                   <td mat-cell *matCellDef="let element">
                     <button
                       mat-raised-button
-                      (click)="showUser(element.id)"
+                      (click)="showClient(element.id)"
                       type="button"
-                      matTooltip="Ver Usuario"
+                      matTooltip="Ver Cliente"
                       [matTooltipPosition]="'above'"
                       class="btn btn-info btn-link btn-sm btn-just-icon"
                     >
@@ -88,9 +75,9 @@
                     </button>
                     <button
                       mat-raised-button
-                      (click)="editUser(element.id)"
+                      (click)="editClient(element.id)"
                       type="button"
-                      matTooltip="Editar Usuario"
+                      matTooltip="Editar Cliente"
                       [matTooltipPosition]="'above'"
                       class="btn btn-success btn-link btn-sm btn-just-icon"
                     >
@@ -98,9 +85,9 @@
                     </button>
                     <button
                       mat-raised-button
-                      (click)="deleteUser(element.id)"
+                      (click)="deleteClient(element.id)"
                       type="button"
-                      matTooltip="Eliminar Usuario"
+                      matTooltip="Eliminar Cliente"
                       [matTooltipPosition]="'above'"
                       class="btn btn-danger btn-link btn-sm btn-just-icon"
                     >
@@ -118,8 +105,8 @@
                     <p class="category text-center p-5">
                       {{
                         usersFilter
-                          ? 'No hay usuarios que coincidan con los filtros'
-                          : 'No hay usuarios registrados'
+                          ? 'No hay clientes que coincidan con los filtros'
+                          : 'No hay clientes registrados'
                       }}
                     </p>
                   </td>
