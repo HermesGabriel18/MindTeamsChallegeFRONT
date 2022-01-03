@@ -52,6 +52,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   editProfile() {
-    this._utilsService.navigate([`app/${MindTeamsRoutes.dashboard}`]);
+    this._utilsService.navigate([`app/${MindTeamsRoutes.profile}`]);
   }
 }

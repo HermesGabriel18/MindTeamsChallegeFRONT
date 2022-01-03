@@ -53,8 +53,9 @@
             />
           </div>
           <button
+            mat-raised-button
+            class="btn btn-block btn-danger"
             type="submit"
-            class="btn btn-block mt-4 btn-primary"
             [disabled]="loginForm.invalid || loading"
           >
             {{ loading ? 'Accediendo' : 'Acceder' }}

@@ -1,0 +1,119 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">{{ title }}</h4>
+            <p class="card-category">Completa tu perfil</p>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="profileForm" (submit)="updateProfile()">
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      formControlName="email"
+                      matInput
+                      placeholder="Email"
+                      type="email"
+                      disabled
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      formControlName="name"
+                      matInput
+                      placeholder="Escriba su nombre acá"
+                      type="text"
+                    />
+                    <small
+                      *ngIf="profileForm.get('name').invalid"
+                      class="text-danger"
+                    >
+                      Debe ingresar su nombre
+                    </small>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <mat-checkbox
+                  [(ngModel)]="changePass"
+                  [ngModelOptions]="{
+                    standalone: true
+                  }"
+                >
+                  Cambiar contraseña
+                </mat-checkbox>
+              </div>
+
+              <ng-container *ngIf="changePass">
+                <div class="row">
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <input
+                        formControlName="password"
+                        matInput
+                        placeholder="Escriba su contraseña acá"
+                        type="password"
+                        disabled
+                      />
+                      <small
+                        *ngIf="profileForm.get('password').invalid"
+                        class="text-danger"
+                      >
+                        Ingrese una contraseña válida. (Mínimo 8 caracteres).
+                      </small>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <input
+                        formControlName="password_confirmation"
+                        matInput
+                        placeholder="Escriba de nuevo su contraseña acá"
+                        type="password"
+                        disabled
+                      />
+                      <small
+                        *ngIf="
+                          profileForm
+                            .get('password_confirmation')
+                            .hasError('notEquivalent')
+                        "
+                        class="text-danger"
+                      >
+                        Las contraseñas deben coincidir
+                      </small>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </ng-container>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <label>Sobre mi</label>
+                  <mat-form-field class="example-full-width">
+                    <textarea matInput placeholder="..."></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+              <button
+                mat-raised-button
+                type="submit"
+                class="btn btn-danger pull-right"
+              >
+                Actualizar perfil
+              </button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

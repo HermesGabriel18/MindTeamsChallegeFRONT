@@ -18,4 +18,9 @@ export const AdminLayoutRoutes: Routes = [
       },
     },
   },
+  {
+    path: MindTeamsRoutes.profile,
+    loadChildren: () =>
+      import('../../pages/profile/profile.module').then((m) => m.ProfileModule),
+  },
 ];

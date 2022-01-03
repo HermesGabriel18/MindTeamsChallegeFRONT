@@ -164,6 +164,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   editProfile() {
-    this._router.navigate([`app/${MindTeamsRoutes.dashboard}`]);
+    this._router.navigate([`app/${MindTeamsRoutes.profile}`]);
   }
 }
