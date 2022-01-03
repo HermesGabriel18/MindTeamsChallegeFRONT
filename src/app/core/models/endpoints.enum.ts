@@ -1,8 +1,6 @@
 export enum AuthEndpoints {
   login = '/login',
   logout = '/logout',
-  passwordForgot = '/password/forgot',
-  passwordReset = '/password/reset',
 }
 
 export enum ClientsEndpoints {
@@ -13,6 +11,12 @@ export enum ClientsEndpoints {
 export enum DisabledEndpoints {
   user = '/disable/user/:id',
   client = '/disable/client/:id',
+  project = '/disable/project/:id',
+}
+
+export enum ProjectsEndpoints {
+  projects = '/projects',
+  projectsWithId = '/projects/:id',
 }
 
 export enum RolesEndpoints {

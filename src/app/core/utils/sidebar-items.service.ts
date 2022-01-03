@@ -43,6 +43,15 @@ export class SidebarItemsService {
           ? false
           : true,
       },
+      {
+        path: `/app/${MindTeamsRoutes.projects}`,
+        title: 'Proyectos',
+        icon: 'emoji_objects',
+        class: '',
+        hidden: this._ngxPermissions.getPermission(String(Privileges.PROJECTS))
+          ? false
+          : true,
+      },
     ];
     return sidebarMenu;
   }

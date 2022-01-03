@@ -4,12 +4,14 @@ export const superAdminPrivileges = [
   String(Privileges.DASHBOARD),
   String(Privileges.USERS),
   String(Privileges.CLIENTS),
+  String(Privileges.PROJECTS),
 ];
 
 export const adminPrivileges = [
   String(Privileges.DASHBOARD),
   String(Privileges.USERS),
   String(Privileges.CLIENTS),
+  String(Privileges.PROJECTS),
 ];
 
 export const regularPrivileges = [String(Privileges.DASHBOARD)];

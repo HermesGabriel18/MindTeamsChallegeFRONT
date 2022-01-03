@@ -15,4 +15,5 @@ export enum Privileges {
   DASHBOARD = 1,
   USERS = 2,
   CLIENTS = 3,
+  PROJECTS = 4,
 }
