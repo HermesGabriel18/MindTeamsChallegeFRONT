@@ -13,6 +13,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatChipsModule } from '@angular/material/chips';
 import { RouterModule } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FooterComponent } from './components/footer/footer.component';
@@ -35,6 +36,7 @@ const MODULES = [
   MatTooltipModule,
   MatFormFieldModule,
   MatInputModule,
+  MatChipsModule,
 ];
 
 @NgModule({

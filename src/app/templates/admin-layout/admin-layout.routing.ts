@@ -3,6 +3,8 @@ import { Privileges } from '@auth/models';
 import { MindTeamsRoutes } from '@core/models';
 import { NgxPermissionsGuard } from 'ngx-permissions';
 
+const error = MindTeamsRoutes.dashboard;
+
 export const AdminLayoutRoutes: Routes = [
   {
     path: MindTeamsRoutes.dashboard,
@@ -13,8 +15,8 @@ export const AdminLayoutRoutes: Routes = [
     canActivate: [NgxPermissionsGuard],
     data: {
       permissions: {
-        only: [Privileges.USERS],
-        redirectTo: 'auth/login',
+        only: [Privileges.DASHBOARD],
+        redirectTo: error,
       },
     },
   },
@@ -22,5 +24,17 @@ export const AdminLayoutRoutes: Routes = [
     path: MindTeamsRoutes.profile,
     loadChildren: () =>
       import('../../pages/profile/profile.module').then((m) => m.ProfileModule),
+  },
+  {
+    path: MindTeamsRoutes.users,
+    loadChildren: () =>
+      import('../../pages/users/users.module').then((m) => m.UsersModule),
+    canActivate: [NgxPermissionsGuard],
+    data: {
+      permissions: {
+        only: [Privileges.USERS],
+        redirectTo: error,
+      },
+    },
   },
 ];
