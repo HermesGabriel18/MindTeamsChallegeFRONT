@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthLayoutComponent } from '@app/templates/auth-layout/auth-layout.component';
+import { AuthComponent } from '@auth/auth.component';
 import { AuthGuard, ReturnLoggedGuard } from '@core/guards';
 import { MindTeamsRoutes } from '@core/models';
 import { PagesComponent } from '@pages/pages.component';
@@ -11,21 +11,14 @@ const routes: Routes = [
   {
     path: 'auth',
     canActivate: [ReturnLoggedGuard],
-    component: AuthLayoutComponent,
+    component: AuthComponent,
     children: [
       {
         path: '',
         loadChildren: () =>
-          import('./templates/auth-layout/auth-layout.module').then(
-            (m) => m.AuthLayoutModule
-          ),
+          import('./auth/auth.module').then((m) => m.AuthModule),
       },
     ],
-  },
-  {
-    path: 'app',
-    redirectTo: `app/${MindTeamsRoutes.dashboard}`,
-    pathMatch: 'full',
   },
   {
     path: 'app',
@@ -38,6 +31,11 @@ const routes: Routes = [
           import('./pages/pages.module').then((m) => m.PagesModule),
       },
     ],
+  },
+  {
+    path: 'app',
+    redirectTo: `app/${MindTeamsRoutes.dashboard}`,
+    pathMatch: 'full',
   },
   {
     path: '**',

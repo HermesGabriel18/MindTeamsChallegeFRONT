@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from '@auth/login/login.component';
+import { LoginComponent } from './login/login.component';
 import { MindTeamsRoutes } from '@core/models';
 
-export const AuthLayoutRoutes: Routes = [
+export const AuthRoutes: Routes = [
   {
     path: '',
     redirectTo: `${MindTeamsRoutes.login}`,

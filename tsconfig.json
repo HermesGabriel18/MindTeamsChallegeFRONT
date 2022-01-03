@@ -17,7 +17,6 @@
       "@core/*": ["./app/core/*"],
       "@pages/*": ["./app/pages/*"],
       "@shared/*": ["./app/shared/*"],
-      "@templates/*": ["./app/templates/*"],
       "@assets/*": ["./assets/*"],
       "@env/*": ["./environments/*"],
       "@app/*": ["./app/*"]
