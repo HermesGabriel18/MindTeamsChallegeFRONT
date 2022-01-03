@@ -19,6 +19,13 @@ export class SidebarItemsService {
           : true,
       },
       {
+        path: `/app/${MindTeamsRoutes.profile}`,
+        title: 'Perfil',
+        icon: '',
+        class: '',
+        hidden: true,
+      },
+      {
         path: `/app/${MindTeamsRoutes.users}`,
         title: 'Usuarios',
         icon: 'person',
