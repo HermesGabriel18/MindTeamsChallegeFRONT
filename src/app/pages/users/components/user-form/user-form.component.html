@@ -18,6 +18,12 @@
                       placeholder="Correo electrónico"
                       type="email"
                     />
+                    <small
+                      *ngIf="userForm.get('email').invalid"
+                      class="text-danger"
+                    >
+                      Debe ingresar un correo válido
+                    </small>
                   </mat-form-field>
                 </div>
                 <div class="col-md-6">
@@ -95,6 +101,26 @@
 
               <div class="row">
                 <div class="col-md-12">
+                  <ng-select
+                    id="rolInput"
+                    [items]="rolesList"
+                    placeholder="Seleccione un rol"
+                    bindLabel="label"
+                    bindValue="id"
+                    [virtualScroll]="true"
+                    formControlName="role_id"
+                  ></ng-select>
+                  <small
+                    *ngIf="userForm.get('role_id').invalid"
+                    class="text-danger"
+                  >
+                    Debe seleccionar un rol
+                  </small>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
                   <label>Sobre mi</label>
                   <mat-form-field class="example-full-width">
                     <textarea matInput placeholder="..."></textarea>
@@ -113,8 +139,9 @@
                 mat-raised-button
                 type="submit"
                 class="btn btn-danger pull-right"
+                [disabled]="userForm.invalid || isLoading"
               >
-                Guardar
+                {{ isLoading ? 'Guardando' : 'Guardar' }}
               </button>
               <div class="clearfix"></div>
             </form>

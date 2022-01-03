@@ -16,14 +16,14 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./user-form.component.css'],
 })
 export class UserFormComponent implements OnInit, OnDestroy {
-  module: string = '';
-  title: string = '';
-  isEdit: boolean = false;
-  isLoading: boolean = false;
-  clientLoading: boolean = false;
+  module = '';
+  title = '';
+  isEdit = false;
+  isLoading = false;
+  clientLoading = false;
   userForm: FormGroup = new FormGroup({});
-  userStatus: boolean = false;
-  changePass: boolean = false;
+  userStatus = false;
+  changePass = false;
   rolesList: Role[] = [];
   private _subscription: Subscription = new Subscription();
 
@@ -102,13 +102,19 @@ export class UserFormComponent implements OnInit, OnDestroy {
     this.userForm = this._formBuilder.group(
       {
         role_id: [this.isEdit ? user.role_id : null, Validators.required],
-
         name: [this.isEdit ? user.name : '', Validators.required],
         email: [
           {
             value: this.isEdit ? user.email : '',
             disabled: this.isEdit,
           },
+          [
+            Validators.compose([
+              Validators.required,
+              this._customValidationsService.emailValidator(),
+            ]),
+          ],
+          ,
         ],
         password: ['', [Validators.minLength(8)]],
         password_confirmation: ['', [Validators.minLength(8)]],
