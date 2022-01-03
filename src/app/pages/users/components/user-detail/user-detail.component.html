@@ -5,6 +5,7 @@
         <div class="card">
           <div class="card-header card-header-danger">
             <h4 class="card-title">{{ title }}</h4>
+            <p>{{ user.name }}</p>
           </div>
           <div class="card-body">
             <div class="row">
@@ -14,12 +15,7 @@
                     <mat-expansion-panel-header>
                       <mat-panel-title> Información básica </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <div class="row m-2">
-                      <div class="col-md-12">
-                        <span class="text-bold"> Nombre: </span>
-                        {{ user.name }}.
-                      </div>
-                    </div>
+
                     <div class="row m-2">
                       <div class="col-md-12">
                         <span class="text-bold"> Correo electrónico: </span>
