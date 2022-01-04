@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="login__wrapper">
+    <div class="card text-center shadow p-3 bg-white round-corner elevation-2">
+      <img
+        src="../../../assets/img/angular2-logo.png"
+        class="card-img-top img"
+      />
+      <div class="card-body">
+        <form
+          [formGroup]="loginForm"
+          class="col-md-12 pb-3"
+          id="loginForm"
+          (submit)="onLogin()"
+        >
+          <div class="form-group" *ngIf="showError">
+            <div class="alert alert-danger" role="alert">
+              <button
+                type="button"
+                aria-hidden="true"
+                class="close"
+                (click)="closeAlert()"
+              >
+                ×
+              </button>
+              Correo electrónico o contraseña incorrecto
+            </div>
+          </div>
+          <div class="form-group">
+            <label *ngIf="!production"> DEV: super_admin@mindteams.com </label>
+            <input
+              class="form-control"
+              placeholder="Email"
+              type="email"
+              formControlName="email"
+              name="email"
+              placeholder="Correo electrónico"
+            />
+            <small
+              *ngIf="loginForm.get('email').errors?.pattern"
+              class="text-danger"
+            >
+              Correo inválido
+            </small>
+          </div>
+          <div class="form-group">
+            <label *ngIf="!production"> DEV: Secret123** </label>
+            <input
+              class="form-control"
+              placeholder="Contraseña"
+              type="password"
+              formControlName="password"
+              name="password"
+            />
+          </div>
+          <button
+            mat-raised-button
+            class="btn btn-block btn-danger"
+            type="submit"
+            [disabled]="loginForm.invalid || loading"
+          >
+            {{ loading ? 'Accediendo' : 'Acceder' }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

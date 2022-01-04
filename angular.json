@@ -16,13 +16,11 @@
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
-            "assets": [
-              "src/assets",
-              "src/favicon.ico"
-            ],
+            "assets": ["src/assets", "src/favicon.ico"],
             "styles": [
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
               "src/assets/scss/material-dashboard.scss",
+              "node_modules/@ng-select/ng-select/themes/material.theme.css",
               "src/assets/css/demo.css"
             ],
             "scripts": [
@@ -35,7 +33,7 @@
               "node_modules/bootstrap-notify/bootstrap-notify.js",
               "node_modules/chartist/dist/chartist.js"
             ],
-            "allowedCommonJsDependencies" : [
+            "allowedCommonJsDependencies": [
               "rxjs/add/operator/filter",
               "jquery",
               "chartist"
@@ -66,8 +64,8 @@
               ]
             },
             "development": {
-             "buildOptimizer": false,
-             "optimization": {
+              "buildOptimizer": false,
+              "optimization": {
                 "scripts": true,
                 "styles": {
                   "minify": false,
@@ -75,8 +73,8 @@
                 },
                 "fonts": true
               },
-             "outputHashing": "all",
-           }
+              "outputHashing": "all"
+            }
           }
         },
         "serve": {
@@ -92,7 +90,7 @@
               "browserTarget": "material-dashboard-angular:build:development"
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -120,21 +118,16 @@
             "styles": [
               "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
               "src/assets/scss/material-dashboard.scss",
+              "node_modules/@ng-select/ng-select/themes/material.theme.css",
               "src/assets/css/demo.css"
             ],
-            "assets": [
-              "src/assets",
-              "src/favicon.ico"
-            ]
+            "assets": ["src/assets", "src/favicon.ico"]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
+            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
             "exclude": []
           }
         }
@@ -155,9 +148,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "e2e/tsconfig.e2e.json"
-            ],
+            "tsConfig": ["e2e/tsconfig.e2e.json"],
             "exclude": []
           }
         }
@@ -167,8 +158,7 @@
   "defaultProject": "material-dashboard-angular",
   "schematics": {
     "@schematics/angular:component": {
-      "prefix": "app",
-      "styleext": "scss"
+      "prefix": "app"
     },
     "@schematics/angular:directive": {
       "prefix": "app"

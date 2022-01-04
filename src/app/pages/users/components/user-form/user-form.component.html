@@ -1,0 +1,171 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">{{ title }}</h4>
+            <p class="card-category">Completa los datos</p>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="userForm" (submit)="saveUser()">
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      formControlName="email"
+                      matInput
+                      placeholder="Correo electrónico"
+                      type="email"
+                    />
+                    <small
+                      *ngIf="userForm.get('email').invalid"
+                      class="text-danger"
+                    >
+                      Debe ingresar un correo válido
+                    </small>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      formControlName="name"
+                      matInput
+                      placeholder="Escriba el nombre acá"
+                      type="text"
+                    />
+                    <small
+                      *ngIf="userForm.get('name').invalid"
+                      class="text-danger"
+                    >
+                      Debe ingresar un nombre
+                    </small>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div *ngIf="isEdit" class="col-md-12">
+                <mat-checkbox
+                  [(ngModel)]="changePass"
+                  [ngModelOptions]="{
+                    standalone: true
+                  }"
+                >
+                  Cambiar contraseña
+                </mat-checkbox>
+              </div>
+
+              <ng-container *ngIf="!isEdit || changePass">
+                <div class="row">
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <input
+                        formControlName="password"
+                        matInput
+                        placeholder="Escriba la contraseña acá"
+                        type="password"
+                        disabled
+                      />
+                      <small
+                        *ngIf="userForm.get('password').invalid"
+                        class="text-danger"
+                      >
+                        Ingrese una contraseña válida. (Mínimo 8 caracteres).
+                      </small>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <input
+                        formControlName="password_confirmation"
+                        matInput
+                        placeholder="Escriba de nuevo la contraseña acá"
+                        type="password"
+                        disabled
+                      />
+                      <small
+                        *ngIf="
+                          userForm
+                            .get('password_confirmation')
+                            .hasError('notEquivalent')
+                        "
+                        class="text-danger"
+                      >
+                        Las contraseñas deben coincidir
+                      </small>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </ng-container>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <ng-select
+                    id="rolInput"
+                    [items]="rolesList"
+                    placeholder="Seleccione un rol"
+                    bindLabel="label"
+                    bindValue="id"
+                    [virtualScroll]="true"
+                    formControlName="role_id"
+                  ></ng-select>
+                  <small
+                    *ngIf="userForm.get('role_id').invalid"
+                    class="text-danger"
+                  >
+                    Debe seleccionar un rol
+                  </small>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <label>Sobre mi</label>
+                  <mat-form-field class="example-full-width">
+                    <textarea matInput placeholder="..."></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row" *ngIf="isEdit">
+                <div class="col-md-6">
+                  <div class="pull-right">
+                    <mat-checkbox
+                      [(ngModel)]="userStatus"
+                      [ngModelOptions]="{
+                        standalone: true
+                      }"
+                      (change)="onChangeStatus($event)"
+                    >
+                      Estado del usuario :
+                      {{ userStatus ? 'Activo' : 'Inactivo' }}
+                    </mat-checkbox>
+                  </div>
+                </div>
+              </div>
+
+              <button
+                mat-raised-button
+                type="button"
+                class="btn btn-default"
+                (click)="goBack()"
+              >
+                Ir al listado de usuarios
+              </button>
+              <button
+                mat-raised-button
+                type="submit"
+                class="btn btn-danger pull-right"
+                [disabled]="userForm.invalid || isLoading"
+              >
+                {{ isLoading ? 'Guardando' : 'Guardar' }}
+              </button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,103 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">{{ title }}</h4>
+            <p>{{ client.name }}</p>
+          </div>
+          <div class="card-body">
+            <div class="row m-2">
+              <div class="col-md-12">
+                <mat-chip-list aria-label="Status">
+                  <mat-chip *ngIf="!client.disabled" color="primary" selected
+                    >Activo</mat-chip
+                  >
+                  <mat-chip *ngIf="client.disabled" color="warn" selected
+                    >Inactivo</mat-chip
+                  >
+                </mat-chip-list>
+              </div>
+            </div>
+
+            <div class="row mt-2">
+              <div class="col-md-12">
+                <mat-accordion>
+                  <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title> Lista de proyectos </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="table-responsive table-full-width">
+                      <table class="table table-hover table-striped">
+                        <thead>
+                          <tr>
+                            <th
+                              *ngFor="let cell of projectsTableData.headerRow"
+                            >
+                              {{ cell }}
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let row of projectsTableData.dataRows">
+                            <td>
+                              {{ row.name }}
+                            </td>
+                            <td>
+                              <mat-chip-list aria-label="Status">
+                                <mat-chip
+                                  *ngIf="!row.disabled"
+                                  color="primary"
+                                  selected
+                                  >Activo</mat-chip
+                                >
+                                <mat-chip
+                                  *ngIf="row.disabled"
+                                  color="warn"
+                                  selected
+                                  >Inactivo</mat-chip
+                                >
+                              </mat-chip-list>
+                            </td>
+                            <td>
+                              <button
+                                mat-raised-button
+                                (click)="goToProject(row.id)"
+                                type="button"
+                                class="btn btn-info btn-link btn-sm btn-just-icon"
+                              >
+                                <i class="material-icons">visibility</i>
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div
+                        *ngIf="projectsTableData.dataRows.length === 0"
+                        class="text-center mt-5"
+                      >
+                        <p class="empty-message">
+                          Este cliente no tiene proyectos
+                        </p>
+                      </div>
+                    </div>
+                  </mat-expansion-panel>
+                </mat-accordion>
+              </div>
+            </div>
+
+            <button
+              mat-raised-button
+              type="button"
+              class="btn btn-default mt-2"
+              (click)="goBack()"
+            >
+              Ir al listado de clientes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

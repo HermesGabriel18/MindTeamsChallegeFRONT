@@ -1,0 +1,63 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">{{ title }}</h4>
+            <p>{{ user.name }}</p>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <mat-accordion>
+                  <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title> Información básica </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                    <div class="row m-2">
+                      <div class="col-md-12">
+                        <span class="text-bold"> Correo electrónico: </span>
+                        {{ user.email }}.
+                      </div>
+                    </div>
+                    <div class="row m-2">
+                      <div class="col-md-12">
+                        <span class="text-bold"> Rol: </span>
+                        {{ user.role.label }}.
+                      </div>
+                    </div>
+                    <div class="row m-2">
+                      <div class="col-md-12">
+                        <mat-chip-list aria-label="Status">
+                          <mat-chip
+                            *ngIf="!user.disabled"
+                            color="primary"
+                            selected
+                            >Activo</mat-chip
+                          >
+                          <mat-chip *ngIf="user.disabled" color="warn" selected
+                            >Inactivo</mat-chip
+                          >
+                        </mat-chip-list>
+                      </div>
+                    </div>
+                  </mat-expansion-panel>
+                </mat-accordion>
+              </div>
+            </div>
+            <button
+              mat-raised-button
+              type="button"
+              class="btn btn-default mt-2"
+              (click)="goBack()"
+            >
+              Ir al listado de usuarios
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

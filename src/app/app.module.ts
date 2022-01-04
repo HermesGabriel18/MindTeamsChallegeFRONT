@@ -1,47 +1,33 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import es from '@angular/common/locales/es';
+import { LOCALE_ID, NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-
-
-import { AppRoutingModule } from './app.routing';
-import { ComponentsModule } from './components/components.module';
-
+import { CoreModule } from '@core/core.module';
+import { SharedModule } from '@shared/shared.module';
+import { NgxPermissionsModule } from 'ngx-permissions';
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app.routing';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { TableListComponent } from './table-list/table-list.component';
-import { TypographyComponent } from './typography/typography.component';
-import { IconsComponent } from './icons/icons.component';
-import { MapsComponent } from './maps/maps.component';
-import { NotificationsComponent } from './notifications/notifications.component';
-import { UpgradeComponent } from './upgrade/upgrade.component';
-import {
-  AgmCoreModule
-} from '@agm/core';
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-
+registerLocaleData(es);
 @NgModule({
   imports: [
     BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
     HttpClientModule,
-    ComponentsModule,
     RouterModule,
     AppRoutingModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-    })
+    NgxPermissionsModule.forRoot(),
+    CoreModule.forRoot(),
+    SharedModule,
   ],
-  declarations: [
-    AppComponent,
-    AdminLayoutComponent,
-
+  declarations: [AppComponent],
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: 'es-ES',
+    },
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

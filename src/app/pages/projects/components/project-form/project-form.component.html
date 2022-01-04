@@ -1,0 +1,94 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">{{ title }}</h4>
+            <p class="card-category">Completa los datos</p>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="projectForm" (submit)="saveProject()">
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      formControlName="name"
+                      matInput
+                      placeholder="Escriba el nombre acá"
+                      type="text"
+                    />
+                    <small
+                      *ngIf="projectForm.get('name').invalid"
+                      class="text-danger"
+                    >
+                      Debe ingresar un nombre
+                    </small>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <ng-select
+                    [items]="clientsList"
+                    placeholder="Clientes"
+                    bindLabel="name"
+                    bindValue="id"
+                    [loading]="clientsLoading"
+                    [virtualScroll]="true"
+                    (scroll)="onScrollClients($event)"
+                    (scrollToEnd)="onScrollToEnd()"
+                    formControlName="client_id"
+                  >
+                    <ng-template ng-header-tmp>
+                      <small class="form-text text-muted">
+                        Cargados {{ clientsList.length }} de
+                        {{ clientsTotal }}
+                      </small>
+                    </ng-template>
+                  </ng-select>
+                </div>
+              </div>
+
+              <div class="row" *ngIf="isEdit">
+                <div class="col-md-6">
+                  <div class="pull-right">
+                    <mat-checkbox
+                      [(ngModel)]="projectStatus"
+                      [ngModelOptions]="{
+                        standalone: true
+                      }"
+                      (change)="onChangeStatus($event)"
+                    >
+                      Estado del proyecto :
+                      {{ projectStatus ? 'Activo' : 'Inactivo' }}
+                    </mat-checkbox>
+                  </div>
+                </div>
+              </div>
+
+              <button
+                mat-raised-button
+                type="button"
+                class="btn btn-default"
+                (click)="goBack()"
+              >
+                Ir al listado de proyectos
+              </button>
+              <button
+                mat-raised-button
+                type="submit"
+                class="btn btn-danger pull-right"
+                [disabled]="projectForm.invalid || isLoading"
+              >
+                {{ isLoading ? 'Guardando' : 'Guardar' }}
+              </button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
