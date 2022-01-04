@@ -59,4 +59,18 @@ export const PagesRoutes: Routes = [
       },
     },
   },
+  {
+    path: MindTeamsRoutes.transactions,
+    loadChildren: () =>
+      import('./transactions/transactions.module').then(
+        (m) => m.TransactionsModule
+      ),
+    canActivate: [NgxPermissionsGuard],
+    data: {
+      permissions: {
+        only: [Privileges.TRANSACTIONS],
+        redirectTo: error,
+      },
+    },
+  },
 ];

@@ -66,6 +66,7 @@ export class UsersListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this._subscription.unsubscribe();
   }
+
   showRoleName(role_id: number): string {
     const roleFound = this.rolesList.find((role) => role.id === role_id);
     return roleFound?.label || 'Rol desconocido';

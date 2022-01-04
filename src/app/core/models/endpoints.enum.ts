@@ -30,6 +30,7 @@ export enum RolesEndpoints {
 
 export enum TransactionsEndpoints {
   transactions = '/transactions',
+  transactionsWithId = '/transactions/:id',
 }
 
 export enum UsersEndpoints {
