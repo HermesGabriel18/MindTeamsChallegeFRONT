@@ -20,7 +20,7 @@ export class TransactionsResolver implements Resolve<Transaction[]> {
     return this._transactionService
       .getAllTransactions({
         filters: {
-          with: ['createdBy', 'transactionType'],
+          with: ['createdBy', 'user', 'transactionType', 'project'],
         },
       })
       .pipe(
