@@ -46,6 +46,14 @@ export class TokenInterceptor implements HttpInterceptor {
             });
           }
         }
+        if (error.status === ErrorType.unprocessable_entity) {
+          const data = error.error.data;
+          for (const property in data) {
+            if (property && data[property]) {
+              this._utilsService.showNotificationError(data[property]);
+            }
+          }
+        }
         return throwError(request);
       })
     );
