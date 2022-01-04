@@ -48,8 +48,7 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
     this.title = this._activatedRoute.snapshot.data.title;
     this.isEdit = this._activatedRoute.snapshot.data.edit;
     this.clientsList = this.orderArray(
-      this._activatedRoute.snapshot.data.clients,
-      'label'
+      this._activatedRoute.snapshot.data.clients
     );
     this._patchProjectData();
   }
@@ -123,10 +122,15 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
   private _patchProjectData() {
     const project: Project = this._activatedRoute.snapshot.data.project;
     this.projectForm = this._formBuilder.group({
-      client_id: [this.isEdit ? project.client_id : null, Validators.required],
+      client_id: [
+        {
+          value: this.isEdit ? project.client_id : null,
+          disabled: this.isEdit,
+        },
+        [Validators.required],
+      ],
       name: [this.isEdit ? project.name : '', Validators.required],
     });
-    console.log(this.projectForm.value);
     this._loadStatus();
   }
 

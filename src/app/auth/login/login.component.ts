@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.production);
     this._createFormGroup();
   }
 
