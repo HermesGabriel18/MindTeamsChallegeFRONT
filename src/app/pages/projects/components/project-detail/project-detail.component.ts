@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '@auth/models';
 import { MindTeamsRoutes } from '@core/models';
@@ -6,6 +7,7 @@ import { UtilsService } from '@core/utils';
 import { Assignment } from '@pages/assignments/models';
 import { AssignmentService } from '@pages/assignments/services';
 import { Project } from '@pages/projects/models';
+import { UserSelectionComponent } from '@shared/components/user-selection';
 import { TableData } from '@shared/models';
 import { Subscription } from 'rxjs';
 
@@ -22,6 +24,7 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
   usersTableData: TableData = null;
   private _subscription: Subscription = new Subscription();
   constructor(
+    public dialog: MatDialog,
     private _router: Router,
     private _activatedRoute: ActivatedRoute,
     private _assignmentService: AssignmentService,
@@ -50,19 +53,16 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
   }
 
   addUser() {
-    this._subscription = this._assignmentService
-      .createAssignment({
-        user_id: Number('3'),
-        project_id: this.project.id,
-      })
-      .subscribe(
-        () => {
-          this._loadUsers();
-        },
-        () => {
-          this._handleError('Error al agregar al usuario');
-        }
-      );
+    const dialogRef = this.dialog.open(UserSelectionComponent, {
+      height: '350px',
+      width: '500px',
+    });
+
+    dialogRef.afterClosed().subscribe((user) => {
+      if (user && user.id) {
+        this._addUser(user.id);
+      }
+    });
   }
 
   deleteUser(idAssignment) {
@@ -101,5 +101,21 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
       headerRow: ['Nombre', 'Estado del usuario', 'Acciones'],
       dataRows: this.usersList,
     };
+  }
+
+  private _addUser(userId: number) {
+    this._subscription = this._assignmentService
+      .createAssignment({
+        user_id: userId,
+        project_id: this.project.id,
+      })
+      .subscribe(
+        () => {
+          this._loadUsers();
+        },
+        () => {
+          this._handleError('Error al agregar al usuario');
+        }
+      );
   }
 }
