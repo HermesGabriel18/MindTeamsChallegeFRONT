@@ -28,6 +28,10 @@ export enum RolesEndpoints {
   roles = '/roles',
 }
 
+export enum TransactionsEndpoints {
+  transactions = '/transactions',
+}
+
 export enum UsersEndpoints {
   users = '/users',
   usersWithId = '/users/:id',

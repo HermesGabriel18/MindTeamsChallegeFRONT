@@ -16,4 +16,5 @@ export enum Privileges {
   USERS = 2,
   CLIENTS = 3,
   PROJECTS = 4,
+  TRANSACTIONS = 5,
 }

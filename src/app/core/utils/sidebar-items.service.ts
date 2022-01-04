@@ -52,6 +52,17 @@ export class SidebarItemsService {
           ? false
           : true,
       },
+      {
+        path: `/app/${MindTeamsRoutes.transactions}`,
+        title: 'Movimientos',
+        icon: 'sync_alt',
+        class: '',
+        hidden: this._ngxPermissions.getPermission(
+          String(Privileges.TRANSACTIONS)
+        )
+          ? false
+          : true,
+      },
     ];
     return sidebarMenu;
   }

@@ -5,6 +5,7 @@ export const superAdminPrivileges = [
   String(Privileges.USERS),
   String(Privileges.CLIENTS),
   String(Privileges.PROJECTS),
+  String(Privileges.TRANSACTIONS),
 ];
 
 export const adminPrivileges = [
@@ -12,6 +13,7 @@ export const adminPrivileges = [
   String(Privileges.USERS),
   String(Privileges.CLIENTS),
   String(Privileges.PROJECTS),
+  String(Privileges.TRANSACTIONS),
 ];
 
 export const regularPrivileges = [String(Privileges.DASHBOARD)];
