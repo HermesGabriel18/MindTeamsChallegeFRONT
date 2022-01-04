@@ -1,7 +1,11 @@
 import { Routes } from '@angular/router';
 import { MindTeamsRoutes } from '@core/models';
 import { ProjectFormComponent, ProjectDetailComponent } from './components';
-import { ProjectsResolver, ProjectResolver } from './resolvers';
+import {
+  ProjectsResolver,
+  ProjectResolver,
+  AssignmentsByUserResolver,
+} from './resolvers';
 import { ProjectsListComponent } from './views';
 import { ClientsResolver } from '@pages/clients/resolvers/clients.resolver';
 
@@ -47,6 +51,7 @@ export const ProjectsRoutes: Routes = [
     component: ProjectDetailComponent,
     resolve: {
       project: ProjectResolver,
+      users: AssignmentsByUserResolver,
     },
     data: {
       module: 'Proyectos',

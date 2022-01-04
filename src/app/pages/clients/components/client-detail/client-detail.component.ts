@@ -29,7 +29,7 @@ export class ClientDetailComponent implements OnInit, OnDestroy {
     this.module = this._activatedRoute.snapshot.data.module;
     this.title = this._activatedRoute.snapshot.data.title;
     this.client = this._activatedRoute.snapshot.data.client;
-    this.projectsList = this._activatedRoute.snapshot.data.projects || [];
+    this.projectsList = this._activatedRoute.snapshot.data.projects;
     this._generateRequestsTable();
   }
 

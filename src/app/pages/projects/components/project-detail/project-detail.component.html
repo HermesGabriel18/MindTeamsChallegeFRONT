@@ -44,6 +44,91 @@
                 </mat-accordion>
               </div>
             </div>
+
+            <div class="row mt-2">
+              <div class="col-md-12">
+                <mat-accordion>
+                  <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title> Equipo </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <button
+                      mat-raised-button
+                      type="button"
+                      class="btn btn-danger pull-right"
+                      (click)="addUser()"
+                    >
+                      Añadir usuario
+                    </button>
+                    <div class="table-responsive table-full-width">
+                      <table class="table table-hover table-striped">
+                        <thead>
+                          <tr>
+                            <th *ngFor="let cell of usersTableData.headerRow">
+                              {{ cell }}
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let row of usersTableData.dataRows">
+                            <td>
+                              {{ row.user.name }}
+                            </td>
+                            <td>
+                              <mat-chip-list aria-label="Status">
+                                <mat-chip
+                                  *ngIf="!row.disabled"
+                                  color="primary"
+                                  selected
+                                  >Activo</mat-chip
+                                >
+                                <mat-chip
+                                  *ngIf="row.disabled"
+                                  color="warn"
+                                  selected
+                                  >Inactivo</mat-chip
+                                >
+                              </mat-chip-list>
+                            </td>
+                            <td>
+                              <button
+                                mat-raised-button
+                                (click)="goToUser(row.user_id)"
+                                type="button"
+                                matTooltip="Ver Usuario"
+                                [matTooltipPosition]="'above'"
+                                class="btn btn-info btn-link btn-sm btn-just-icon"
+                              >
+                                <i class="material-icons">visibility</i>
+                              </button>
+                              <button
+                                mat-raised-button
+                                (click)="deleteUser(row.id)"
+                                type="button"
+                                matTooltip="Eliminar Usuario"
+                                [matTooltipPosition]="'above'"
+                                class="btn btn-danger btn-link btn-sm btn-just-icon"
+                              >
+                                <i class="material-icons">delete</i>
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div
+                        *ngIf="usersTableData.dataRows.length === 0"
+                        class="text-center mt-5"
+                      >
+                        <p class="empty-message">
+                          No hay usuarios en este equipo
+                        </p>
+                      </div>
+                    </div>
+                  </mat-expansion-panel>
+                </mat-accordion>
+              </div>
+            </div>
+
             <button
               mat-raised-button
               type="button"

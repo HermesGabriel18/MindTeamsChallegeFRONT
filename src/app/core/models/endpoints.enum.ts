@@ -1,3 +1,8 @@
+export enum AssignmentsEndpoints {
+  assignments = '/assignments',
+  assignmentsWithId = '/assignments/:id',
+}
+
 export enum AuthEndpoints {
   login = '/login',
   logout = '/logout',
