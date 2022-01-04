@@ -17,15 +17,17 @@ export class ProjectsResolver implements Resolve<Project[]> {
     private _projectService: ProjectService
   ) {}
   resolve(): Observable<Project[]> {
-    return this._projectService.getAllProjects().pipe(
-      map((projects) => projects),
-      catchError(() => {
-        this._utilsService.showNotificationError(
-          'Error al consultar el listado de proyectos'
-        );
-        this._router.navigate([`app/${MindTeamsRoutes.error}`]);
-        return of(null);
-      })
-    );
+    return this._projectService
+      .getAllProjects({ filters: { with: ['client'] } })
+      .pipe(
+        map((projects) => projects),
+        catchError(() => {
+          this._utilsService.showNotificationError(
+            'Error al consultar el listado de proyectos'
+          );
+          this._router.navigate([`app/${MindTeamsRoutes.error}`]);
+          return of(null);
+        })
+      );
   }
 }

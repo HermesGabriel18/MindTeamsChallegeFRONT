@@ -20,7 +20,6 @@ export class UserFormComponent implements OnInit, OnDestroy {
   title = '';
   isEdit = false;
   isLoading = false;
-  clientLoading = false;
   userForm: FormGroup = new FormGroup({});
   userStatus = false;
   changePass = false;

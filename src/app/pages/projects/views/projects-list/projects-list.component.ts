@@ -107,7 +107,7 @@ export class ProjectsListComponent implements OnInit, OnDestroy {
       .getAllProjects({
         pageIndex: pageIndex + 1,
         pageSize,
-        filters,
+        filters: { ...filters, with: 'client' },
       })
       .subscribe(
         (projects) => {

@@ -47,4 +47,16 @@ export const PagesRoutes: Routes = [
       },
     },
   },
+  {
+    path: MindTeamsRoutes.projects,
+    loadChildren: () =>
+      import('./projects/projects.module').then((m) => m.ProjectsModule),
+    canActivate: [NgxPermissionsGuard],
+    data: {
+      permissions: {
+        only: [Privileges.PROJECTS],
+        redirectTo: error,
+      },
+    },
+  },
 ];
