@@ -1,7 +1,11 @@
 import { Routes } from '@angular/router';
 import { MindTeamsRoutes } from '@core/models';
 import { ClientDetailComponent, ClientFormComponent } from './components';
-import { ClientResolver, ClientsResolver } from './resolvers';
+import {
+  ClientResolver,
+  ClientsResolver,
+  ProjectsByClientResolver,
+} from './resolvers';
 import { ClientsListComponent } from './views';
 
 export const ClientsRoutes: Routes = [
@@ -42,6 +46,7 @@ export const ClientsRoutes: Routes = [
     component: ClientDetailComponent,
     resolve: {
       client: ClientResolver,
+      projects: ProjectsByClientResolver,
     },
     data: {
       module: 'Clientes',
